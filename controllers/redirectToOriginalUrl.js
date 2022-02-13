@@ -6,7 +6,7 @@ const redirectToOriginalUrl = (req, res) => {
     if (err) {
       console.log("Server Error");
     } else {
-      res.redirect(url.originalUrl);
+      url ? res.redirect(url.originalUrl) : res.status(404).json("Invalid Url");
     }
   });
 };
