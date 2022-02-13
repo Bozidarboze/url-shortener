@@ -4,7 +4,7 @@ import Url from "../models/UrlModel.js";
 
 const shortenUrl = (req, res) => {
   const originalUrl = req.body.url;
-  const baseUrl = "http:localhost:3000";
+  const baseUrl = "https://bozidar-url-shortener.herokuapp.com";
 
   if (!validUrl.isUri(originalUrl)) {
     return res.status(401).json("Invalid base URL");
