@@ -7,7 +7,7 @@ const shortenUrl = (req, res) => {
   const baseUrl = "https://bozidar-url-shortener.herokuapp.com";
 
   if (!validUrl.isUri(originalUrl)) {
-    return res.status(401).json("Invalid base URL");
+    return res.status(401).json({ error: "invalid url" });
   }
 
   const urlCode = shortid.generate();
