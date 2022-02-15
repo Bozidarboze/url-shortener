@@ -5,12 +5,15 @@ import Url from "../models/UrlModel.js";
 const shortenUrl = (req, res) => {
   const originalUrl = req.body.url;
   const baseUrl = "https://bozidar-url-shortener.herokuapp.com";
+  let urlCode;
 
   if (!validUrl.isUri(originalUrl)) {
-    return res.status(401).json({ error: "invalid url" });
+    return res.json({ error: "invalid url" });
   }
 
-  const urlCode = shortid.generate();
+  Url.find((err, urls) => {
+    urlCode = urls.length + 1;
+  });
 
   Url.findOne(
     {
@@ -21,7 +24,7 @@ const shortenUrl = (req, res) => {
         res.status(400).json("Server Error");
       } else {
         if (url) {
-          res.json({ originalUrl, shortUrl: url.shortUrl });
+          res.json({ originalUrl, shortUrl: url.urlCode });
         } else {
           const shortUrl = baseUrl + "/api/shorturl/" + urlCode;
 
@@ -31,7 +34,7 @@ const shortenUrl = (req, res) => {
             shortUrl,
           });
           url.save();
-          res.json({ originalUrl, shortUrl: url.shortUrl });
+          res.json({ originalUrl, shortUrl: url.urlCode });
         }
       }
     }
