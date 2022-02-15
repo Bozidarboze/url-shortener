@@ -1,5 +1,4 @@
 import validUrl from "valid-url";
-import shortid from "shortid";
 import Url from "../models/UrlModel.js";
 
 const shortenUrl = (req, res) => {
