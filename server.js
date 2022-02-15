@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 import shortenUrl from "./controllers/shortenUrl.js";
 import redirectToOriginalUrl from "./controllers/redirectToOriginalUrl.js";
 
-mongoose.connect(process.env.DB_URL {
+mongoose.connect(process.env.DB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
