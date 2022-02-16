@@ -1,4 +1,4 @@
-import validUrl from "valid-url";
+import validator from "validator";
 import Url from "../models/UrlModel.js";
 
 const shortenUrl = (req, res) => {
@@ -6,9 +6,7 @@ const shortenUrl = (req, res) => {
   const baseUrl = "https://bozidar-url-shortener.herokuapp.com";
   let urlCode;
 
-  if (!validUrl.isUri(originalUrl)) {
-    return res.json({ error: "invalid url" });
-  }
+  !validator.isURL(originalUrl) && res.json({ error: "invalid url" });
 
   Url.find((err, urls) => {
     urlCode = urls.length + 1;
