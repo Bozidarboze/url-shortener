@@ -33,7 +33,7 @@ const shortenUrl = (req, res) => {
             shortUrl,
           });
           url.save();
-          res.json({ originalUrl, shortUrl: url.urlCode });
+          res.json({ original_url: url.originalUrl, short_url: url.urlCode });
         }
       }
     }
